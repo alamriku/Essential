@@ -1,0 +1,45 @@
+heroku login
+heroku create project_name should unique
+add Procfile with web: vendor/bin/heroku-php-apache2 public/ code to root folder
+git add commit and push to heroku master
+then for database user postgresql because its free ,mysql need cleardb addons but need credit card
+heroku addons:create heroku-postgresql:hobby-dev (hobby-dev is plan name)
+heroku config:get DATABASE_URL
+GET the created postgresql database url
+get database cred from url and the cred will as formate
+mysql://[db_username]:[db_password]@[db_host]:[db_port]/[db_databse]
+
+>heroku config:set KEY=VALUE KEY2=Value2
+is used to set env file in larave because env file is not push in production mode in heroku 
+
+ heroku config:set DB_USERNAME=phtjklshxmygmn DB_PASSWORD=12da76ad92e5b738fa98b46a43e7416afd12990746b52e1ad3d4438e127d8367 DB_HOST=ec2-
+54-234-28-165.compute-1.amazonaws.com:5432 DB_PORT=5432 DB_DATABASE=dfq0ppk2movajv
+
+
+postgres://phtjklshxmygmn:12da76ad92e5b738fa98b46a43e7416afd12990746b52e1ad3d4438e127d8367@ec2-54-234-28-165.compute-1.amazonaws.com:5432/dfq0ppk2movajv
+
+because larave use msql but i have used postgresql
+heroku config:set DB_CONNECTION=pgsql
+
+appkey to be added 
+heroku config:set APP_KEY=base64:xZrIPgr4iHY5vdm
+XQ5SrlszlDOicM51kbfDMs6Pzz3g=
+ copy the key from your env file in local
+
+heroku config to show the config variable
+
+run laravel migration
+heroku run php artisan migrate
+
+mixcontener error
+(index):19 Mixed Content: The page at 'https://riku-laravel-vue-qa.herokuapp.com/' was loaded over HTTPS, but requested an insecure stylesheet 'http://riku-laravel-vue-qa.herokuapp.com/css/app.css'. This request has been blocked; the content must be served over HTTPS.
+(index):1 Mixed Content: The page at 'https://riku-laravel-vue-qa.herokuapp.com/' was loaded over HTTPS, but requested an insecure script 'http://riku-laravel-vue-qa.herokuapp.com/js/app.js'. This request has been blocked; the content must be served over HTTPS.
+(index):1 Mixed Content: The page at 'https://riku-laravel-vue-qa.herokuapp.com/' was loaded over HTTPS, but requested an insecure stylesheet 'http://riku-laravel-vue-qa.herokuapp.com/css/app.css'. This request has been blocked; the content must be served over HTTPS.
+
+add this code 
+ if(config('app.env')==='production'){
+            \URL::forceScheme('https');
+        }
+on Appserviceprovider in boot method
+see the video fixing insecure assets error in deploy folder of fullstack web develooper laravel vue
+

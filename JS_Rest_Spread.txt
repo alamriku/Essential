@@ -1,0 +1,38 @@
+		rest operator
+function xyz(x, y, ...z) {
+  console.log(x, ' ', y); // hey hello
+
+  console.log(z); // ["wassup", "goodmorning", "hi", "howdy"]
+  console.log(z[0]); // wassup
+  console.log(z.length); // 4
+}
+xyz("hey", "hello", "wassup", "goodmorning", "hi", "howdy")
+
+	/rest operator
+function add(...args) {
+  let result = 0;
+
+  for (let arg of args) result += arg;
+
+  return result
+}
+
+add(1) // returns 1
+add(1,2) // returns 3
+add(1, 2, 3, 4, 5)
+
+spread operator 
+ 1. Adding array elements to an existing array
+	const arr = ["Joy", "Wangari", "Warugu"];
+	const newArr = ["joykare", ...arr];
+2.Copying arrays
+const arr = [1, 2, 3];
+const arr2 = [...arr];
+
+3.Pass elements of an array to a function as separate arguments
+	function add(a, b, c) {
+  return a + b + c ;
+}
+const args = [1, 2, 3];
+
+add(...args);

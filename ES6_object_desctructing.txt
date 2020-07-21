@@ -1,0 +1,18 @@
+its basically unpack one or more properties from a javascript object
+
+let person ={
+name:'jonh',
+age:37
+}
+undefined
+name
+""
+
+let {name}=person
+ name
+john
+
+
+({res})=>{
+
+}
